@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+attendance.db
+venv/
+*.sqlite
+*.db
+.env
+.DS_Store
