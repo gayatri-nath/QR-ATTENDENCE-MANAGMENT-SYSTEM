@@ -1,0 +1,136 @@
+﻿{% extends "base.html" %}
+
+{% block title %}QR Attendance System - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <i class="fas fa-bolt"></i> Smart Attendance System
+        </div>
+        <h1 class="hero-title">QR-Based Attendance Manager</h1>
+        <p class="hero-subtitle">Fast, secure, and reliable attendance tracking with QR codes. Perfect for educational institutions and corporate environments.</p>
+        
+        <div class="hero-buttons">
+            <a href="{{ url_for('generate_page') }}" class="btn btn-primary">
+                <i class="fas fa-qrcode"></i> Generate QR Code
+            </a>
+            <a href="{{ url_for('register_page') }}" class="btn btn-secondary">
+                <i class="fas fa-user-plus"></i> Register Student
+            </a>
+        </div>
+        
+        <a href="{{ url_for('login') }}" class="admin-link">
+            <i class="fas fa-lock"></i> Admin Portal
+        </a>
+    </div>
+
+    <div class="hero-visual">
+        <div class="qr-visual">
+            <div class="qr-code-demo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" fill="#fff" stroke="#1d4ed8" stroke-width="2"/>
+                    <rect x="10" y="10" width="20" height="20" fill="#1d4ed8"/>
+                    <rect x="30" y="10" width="8" height="8" fill="#1d4ed8"/>
+                    <rect x="50" y="10" width="8" height="8" fill="#1d4ed8"/>
+                    <rect x="70" y="10" width="20" height="20" fill="#1d4ed8"/>
+                    <rect x="10" y="30" width="8" height="8" fill="#1d4ed8"/>
+                    <rect x="40" y="40" width="10" height="10" fill="#2563eb"/>
+                    <rect x="10" y="70" width="20" height="20" fill="#1d4ed8"/>
+                    <rect x="70" y="70" width="20" height="20" fill="#1d4ed8"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <h2 class="section-title">Why Choose Our System?</h2>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-lightning-bolt"></i>
+            </div>
+            <h3>Instant Scanning</h3>
+            <p>Real-time QR code scanning with immediate attendance recording. No delays, no paperwork.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Secure & Verified</h3>
+            <p>Unique QR codes for each student ensure accurate attendance tracking and prevent fraud.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Analytics & Reports</h3>
+            <p>Generate comprehensive attendance reports for compliance, analytics, and record keeping.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobile Friendly</h3>
+            <p>Works seamlessly on any device - phones, tablets, or computers with a camera.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Scanner Section -->
+<section class="scanner-section">
+    <div class="scanner-header">
+        <h2>Quick Scan</h2>
+        <p>Start scanning student QR codes instantly</p>
+    </div>
+    
+    <div class="scanner-container">
+        <div class="scanner-area">
+            <div id="reader"></div>
+            <div class="scanner-placeholder">
+                <i class="fas fa-camera"></i>
+                <p>Point your camera at a QR code</p>
+                <small>Scanning will start automatically</small>
+            </div>
+        </div>
+        
+        <div class="scanner-controls">
+            <button id="startScan" class="btn btn-primary">
+                <i class="fas fa-play"></i> Start Camera
+            </button>
+            <button id="stopScan" class="btn btn-secondary" style="display: none;">
+                <i class="fas fa-stop"></i> Stop Camera
+            </button>
+        </div>
+        
+        <div class="scanner-status">
+            <div class="status-item">
+                <span class="status-label">Status</span>
+                <p class="status-value" id="scannerStatus">Ready</p>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Last Scanned</span>
+                <p class="status-value" id="scanResult">—</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Ready to Get Started?</h2>
+        <p>Register your students and generate their unique QR codes today.</p>
+        <a href="{{ url_for('register_page') }}" class="btn btn-primary btn-large">
+            <i class="fas fa-arrow-right"></i> Get Started Now
+        </a>
+    </div>
+</section>
+{% endblock %}

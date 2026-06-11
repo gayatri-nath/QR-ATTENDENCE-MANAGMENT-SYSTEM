@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}QR Attendance System{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+    <script src="{{ url_for('static', filename='site.js') }}" defer></script>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="topbar-brand">
+                <a href="{{ url_for('home_page') }}"><i class="fas fa-qrcode"></i> QR Attendance</a>
+            </div>
+            <nav class="topbar-nav">
+                <a href="{{ url_for('home_page') }}">Home</a>
+                <a href="{{ url_for('register_page') }}">Register</a>
+                <a href="{{ url_for('generate_page') }}">Generate</a>
+                <a href="{{ url_for('login') }}">Admin</a>
+            </nav>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-grid">
+                    {% for category, message in messages %}
+                        <div class="toast toast-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="app-shell">
+            <aside class="sidebar">
+                {% block sidebar %}{% endblock %}
+            </aside>
+
+            <main class="main-panel">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+
+        <footer class="footer footer-shell">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div>
+                        <h3>QR Attendance Management System</h3>
+                        <p>Smart and Secure Student Attendance Tracking using QR Code Technology.</p>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <nav>
+                        <a href="{{ url_for('home_page') }}">Home</a>
+                        <a href="{{ url_for('register_page') }}">Register Student</a>
+                        <a href="{{ url_for('generate_page') }}">Generate QR</a>
+                        <a href="{{ url_for('login') }}">Admin Login</a>
+                    </nav>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Stay Connected</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:contact@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 QR Attendance Management System | Developed by Gayatri Nath</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

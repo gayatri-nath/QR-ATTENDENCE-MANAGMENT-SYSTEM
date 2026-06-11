@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Register Student{% endblock %}
+
+{% block content %}
+<section class="form-shell">
+    <article class="form-card">
+        <div class="form-header">
+            <div>
+                <h2>Register New Student</h2>
+                <p>Create a student profile and generate a unique QR badge for attendance scanning.</p>
+            </div>
+        </div>
+
+        <form method="POST" novalidate>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="name">Student Name</label>
+                    <input id="name" name="name" type="text" value="{{ form.name if form else '' }}" placeholder="Enter full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="email" type="email" value="{{ form.email if form else '' }}" placeholder="name@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" type="text" value="{{ form.phone if form else '' }}" placeholder="+1 555 123 4567" required>
+                </div>
+                <div class="input-group">
+                    <label for="roll_number">Roll / ID Number</label>
+                    <input id="roll_number" name="roll_number" type="text" value="{{ form.roll_number if form else '' }}" placeholder="e.g. STU-1078" required>
+                </div>
+                <div class="input-group">
+                    <label for="course">Course / Program</label>
+                    <input id="course" name="course" type="text" value="{{ form.course if form else '' }}" placeholder="e.g. Digital Marketing" required>
+                </div>
+                <div class="input-group">
+                    <label for="year">Year / Batch</label>
+                    <input id="year" name="year" type="text" value="{{ form.year if form else '' }}" placeholder="e.g. 2025" required>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save & Generate QR</button>
+                <a href="{{ url_for('home_page') }}" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </form>
+    </article>
+
+    {% if success %}
+    <article class="preview-card">
+        <div class="form-header">
+            <div>
+                <h2>QR Badge Ready</h2>
+                <p>Download and print the student's QR code for instant attendance check-ins.</p>
+            </div>
+        </div>
+
+        <img src="{{ url_for('static', filename='qrcodes/' ~ qr_filename) }}" alt="Generated QR Code">
+        <div class="preview-meta">
+            <strong>{{ student.name }}</strong>
+            <span>{{ student.email }}</span>
+            <span>{{ student.roll_number }}</span>
+        </div>
+        <div class="form-actions">
+            <a href="{{ url_for('static', filename='qrcodes/' ~ qr_filename) }}" download class="btn btn-secondary">Download QR Code</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">Open Dashboard</a>
+        </div>
+    </article>
+    {% endif %}
+</section>
+{% endblock %}

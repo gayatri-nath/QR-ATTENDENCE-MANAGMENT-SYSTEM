@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Student Profile{% endblock %}
+
+{% block content %}
+<section class="form-shell">
+    <article class="form-card" style="max-width: 760px; margin: 0 auto;">
+        <div class="form-header">
+            <div>
+                <h2>Edit Student Profile</h2>
+                <p>Update the student's contact details, roll number, course, and batch information.</p>
+            </div>
+        </div>
+
+        <form method="POST" novalidate>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input id="name" name="name" type="text" value="{{ student.name }}" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="email" type="email" value="{{ student.email }}" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" type="text" value="{{ student.phone }}" required>
+                </div>
+                <div class="input-group">
+                    <label for="roll_number">Roll Number</label>
+                    <input id="roll_number" name="roll_number" type="text" value="{{ student.roll_number }}" required>
+                </div>
+                <div class="input-group">
+                    <label for="course">Course / Program</label>
+                    <input id="course" name="course" type="text" value="{{ student.course }}" required>
+                </div>
+                <div class="input-group">
+                    <label for="year">Year / Batch</label>
+                    <input id="year" name="year" type="text" value="{{ student.year }}" required>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </form>
+    </article>
+</section>
+{% endblock %}

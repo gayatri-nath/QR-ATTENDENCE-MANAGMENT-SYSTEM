@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}QR Generated Successfully{% endblock %}
+
+{% block content %}
+<section class="form-shell" style="justify-items: center;">
+    <article class="preview-card" style="max-width: 720px; width: 100%;">
+        <div class="form-header">
+            <div>
+                <h2>QR Code Generated Successfully</h2>
+                <p>The student QR badge is now available for download. Print it or share it directly from the browser.</p>
+            </div>
+        </div>
+
+        <img src="{{ url_for('static', filename='qrcodes/' ~ qr_filename) }}" alt="Generated QR Code">
+        <div class="preview-meta">
+            <strong>{{ student.name }}</strong>
+            <span>{{ student.email }}</span>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('static', filename='qrcodes/' ~ qr_filename) }}" download class="btn btn-primary">Download QR Code</a>
+            <a href="{{ url_for('register_page') }}" class="btn btn-secondary">Register Another Student</a>
+        </div>
+    </article>
+</section>
+{% endblock %}
